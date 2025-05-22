@@ -3,22 +3,22 @@
 -- Author: YourNameHere
 -- Desc: This file demonstrates how to use Views
 -- Change Log: When,Who,What
--- 2017-01-01,YourNameHere,Created File
+-- 2017-01-01,NThibault,Created File
 --**************************************************************************--
 Begin Try
 	Use Master;
-	If Exists(Select Name From SysDatabases Where Name = 'Assignment06DB_YourNameHere')
+	If Exists(Select Name From SysDatabases Where Name = 'Assignment06DB_NThibault')
 	 Begin 
-	  Alter Database [Assignment06DB_YourNameHere] set Single_user With Rollback Immediate;
-	  Drop Database Assignment06DB_YourNameHere;
+	  Alter Database [Assignment06DB_NThibault] set Single_user With Rollback Immediate;
+	  Drop Database Assignment06DB_NThibault;
 	 End
-	Create Database Assignment06DB_YourNameHere;
+	Create Database Assignment06DB_NThibault;
 End Try
 Begin Catch
 	Print Error_Number();
 End Catch
 go
-Use Assignment06DB_YourNameHere;
+Use Assignment06DB_NThibault;
 
 -- Create Tables (Module 01)-- 
 Create Table Categories
@@ -163,17 +163,51 @@ Select * From Inventories;
 go
 
 /********************************* Questions and Answers *********************************/
+/*
 print 
 'NOTES------------------------------------------------------------------------------------ 
  1) You can use any name you like for you views, but be descriptive and consistent
  2) You can use your working code from assignment 5 for much of this assignment
  3) You must use the BASIC views for each table after they are created in Question 1
 ------------------------------------------------------------------------------------------'
-
+*/
 -- Question 1 (5% pts): How can you create BACIC views to show data from each table in the database.
 -- NOTES: 1) Do not use a *, list out each column!
 --        2) Create one view per table!
 --		  3) Use SchemaBinding to protect the views from being orphaned!
+
+CREATE
+VIEW 
+CategoriesView
+AS
+SELECT
+	CategoryID, CategoryName
+		FROM Categories;
+go
+
+CREATE
+VIEW
+EmployeesView AS
+SELECT
+EmployeeID,EmployeeFirstName,EmployeeLastName,ManagerID
+FROM Employees;
+go
+
+CREATE
+VIEW
+InventoriesView AS
+SELECT
+InventoryID,InventoryDate,EmployeeID,ProductID,Count
+FROM Inventories;
+go
+
+CREATE
+VIEW
+ProductsView AS
+SELECT
+ProductID,ProductName,CategoryID,UnitPrice
+FROM Products;
+go
 
 
 -- Question 2 (5% pts): How can you set permissions, so that the public group CANNOT select data 
