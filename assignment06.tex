@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[lining,light]{InriaSans}
+\renewcommand*\oldstylenums[1]{{\fontfamily{InriaSans-OsF}\selectfont #1}}
+\let\oldnormalfont\normalfont
+\def\normalfont{\oldnormalfont\mdseries}
+\usepackage[margin=1.5in,includehead,includefoot,]{geometry}
+\usepackage{hyperref}
+\usepackage[natbib=true, style=numeric,sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+
+
+\title{Assignment 06 - Views \\
+\large{IT FDN 130A}}
+
+\author{Nicholas Thibault}
+\date{2025-05-27}
+\Large{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+In this assignment I worked with views to control the display of information from tables and learned about functions and stored procedures.
+
+\href{https://github.com/Dilong-paradoxus/DBFoundations/}{Github Link}
+\section*{When to Use Views}
+There are several use-cases for views.\cite{SQLviewW3} Since views are essentially a stored SELECT statement, they can be used to combine data from multiple tables or show only a subset of data from one or more tables in a way that can be viewed like a regular table. Using permissions in combination with the previous techniques, you can create views that show different slices of data to different people, such as showing both official and in-progress housing valuations to appraisers while they work but only the official values to the public even though both are "stored" (views don't really take up new space since they reference existing data) in the same database table. 
+\section*{Views, Functions, and Stored Procedures}
+All three categories allow you to eliminate repetitive tasks. Views do this by acting like a regular table which can be accessed and operated on almost identically to any other table, but which can be composed of parts or all of one or more other tables.\cite{SQLviewW3} Functions\cite{SQLFunctionsW3} and Stored Procedures,\cite{SQLstoredprocW3} on the other hand, store \emph{processes} which are not themselves data but can act upon data in a predictable way. Functions apply a process to the inputs and return a value, but can't do some things like start and end transactions. Stored procedures don't necessarily return a value and execute a planned process in order, including starting and committing transactions. 
+\section*{Summary}
+In summary, there are several ways to automate repetitive processes in a SQL database, including stored procedures, functions, and views. 
+\printbibliography
+\end{document}
